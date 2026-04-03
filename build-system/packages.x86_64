@@ -10,6 +10,9 @@ linux-headers
 grub
 efibootmgr
 os-prober
+syslinux
+memtest86+
+edk2-shell
 
 # Network
 networkmanager
