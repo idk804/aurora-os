@@ -13,6 +13,7 @@ os-prober
 syslinux
 memtest86+
 edk2-shell
+archiso
 
 # Network
 networkmanager
