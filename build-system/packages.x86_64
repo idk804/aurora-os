@@ -1,0 +1,101 @@
+# Aurora OS - Package List
+# Base system
+base
+base-devel
+linux
+linux-firmware
+linux-headers
+
+# Boot
+grub
+efibootmgr
+os-prober
+
+# Network
+networkmanager
+network-manager-applet
+wireless_tools
+wpa_supplicant
+dhcpcd
+iwd
+
+# Filesystem
+btrfs-progs
+dosfstools
+e2fsprogs
+ntfs-3g
+exfatprogs
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+pipewire-jack
+wireplumber
+
+# Wayland / Graphics
+wayland
+wayland-protocols
+wlroots
+xorg-xwayland
+mesa
+vulkan-icd-loader
+libva
+libva-mesa-driver
+
+# GTK / Theming
+gtk4
+libadwaita
+python-gobject
+python-cairo
+
+# Fonts
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-firacode-nerd
+ttf-liberation
+inter-font
+
+# Desktop utilities
+polkit
+polkit-gnome
+xdg-user-dirs
+xdg-utils
+xdg-desktop-portal
+xdg-desktop-portal-wlr
+
+# System tools
+sudo
+nano
+vim
+htop
+neofetch
+git
+curl
+wget
+unzip
+p7zip
+
+# Terminal
+foot
+
+# File manager
+nautilus
+
+# Text editor
+gnome-text-editor
+
+# Browser
+firefox
+
+# Installer
+calamares
+
+# Plymouth
+plymouth
+
+# Misc
+power-profiles-daemon
+bluez
+bluez-utils

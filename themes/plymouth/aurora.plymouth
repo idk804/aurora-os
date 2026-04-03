@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Aurora OS
+Description=Aurora borealis animated boot splash for Aurora OS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/aurora
+ScriptFile=/usr/share/plymouth/themes/aurora/aurora.script

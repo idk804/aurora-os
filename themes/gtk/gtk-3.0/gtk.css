@@ -1,0 +1,147 @@
+/*
+ * Aurora OS GTK3 Theme
+ * Backwards-compatible dark theme with aurora accents
+ * Shares the same color palette as GTK4 version
+ */
+
+@define-color aurora_bg_dark #0a0a1a;
+@define-color aurora_bg_medium #0d1117;
+@define-color aurora_surface #161b22;
+@define-color aurora_surface_bright #1c2333;
+@define-color aurora_green #00ff87;
+@define-color aurora_purple #b388ff;
+@define-color aurora_cyan #00e5ff;
+@define-color aurora_text #e0e0e0;
+@define-color aurora_text_dim #a0a0b0;
+@define-color aurora_border #2a2a3a;
+
+@define-color theme_bg_color @aurora_bg_medium;
+@define-color theme_fg_color @aurora_text;
+@define-color theme_base_color @aurora_surface;
+@define-color theme_text_color @aurora_text;
+@define-color theme_selected_bg_color @aurora_green;
+@define-color theme_selected_fg_color @aurora_bg_dark;
+
+* {
+    -GtkWidget-text-handle-width: 20;
+    -GtkWidget-text-handle-height: 24;
+    -GtkScrollbar-has-backward-stepper: false;
+    -GtkScrollbar-has-forward-stepper: false;
+    outline-color: alpha(@aurora_cyan, 0.4);
+}
+
+.background {
+    background-color: @aurora_bg_medium;
+    color: @aurora_text;
+}
+
+.titlebar, headerbar {
+    background-color: @aurora_bg_dark;
+    color: @aurora_text;
+    border-bottom: 1px solid @aurora_border;
+    min-height: 42px;
+    padding: 0 8px;
+}
+
+button {
+    background-image: none;
+    background-color: @aurora_surface_bright;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 6px 16px;
+    transition: all 200ms ease;
+}
+
+button:hover {
+    background-color: alpha(@aurora_green, 0.15);
+    border-color: alpha(@aurora_green, 0.5);
+}
+
+button:active {
+    background-color: alpha(@aurora_green, 0.25);
+}
+
+button.suggested-action {
+    background-color: @aurora_green;
+    color: @aurora_bg_dark;
+    border-color: @aurora_green;
+}
+
+entry {
+    background-color: @aurora_surface;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+entry:focus {
+    border-color: @aurora_green;
+}
+
+scrollbar slider {
+    background-color: alpha(@aurora_text, 0.3);
+    border-radius: 999px;
+    min-width: 6px;
+    min-height: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: alpha(@aurora_green, 0.5);
+}
+
+.sidebar {
+    background-color: @aurora_bg_dark;
+    border-right: 1px solid @aurora_border;
+}
+
+tooltip {
+    background-color: @aurora_surface;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+}
+
+switch {
+    background-color: @aurora_surface_bright;
+    border: 1px solid @aurora_border;
+    border-radius: 999px;
+}
+
+switch:checked {
+    background-color: @aurora_green;
+    border-color: @aurora_green;
+}
+
+progressbar trough {
+    background-color: @aurora_surface;
+    border-radius: 999px;
+}
+
+progressbar progress {
+    background-image: linear-gradient(to right, @aurora_green, @aurora_cyan);
+    border-radius: 999px;
+}
+
+notebook > header {
+    background-color: @aurora_bg_dark;
+    border-bottom: 1px solid @aurora_border;
+}
+
+notebook > header tab:checked {
+    background-color: @aurora_bg_medium;
+    color: @aurora_green;
+    border-bottom: 2px solid @aurora_green;
+}
+
+menu, .menu {
+    background-color: @aurora_surface;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 4px 0;
+}
+
+menuitem:hover {
+    background-color: alpha(@aurora_green, 0.15);
+}

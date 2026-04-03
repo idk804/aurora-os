@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Aurora
+Comment=Aurora Desktop Environment (Wayland)
+Exec=aurora-compositor -s "aurora-panel & aurora-widgets &"
+Type=Application
+DesktopNames=Aurora

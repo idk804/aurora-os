@@ -1,0 +1,412 @@
+/*
+ * Aurora OS GTK4 Theme
+ * Dark theme with aurora borealis accent colors
+ *
+ * Color Palette:
+ *   Background:  #0a0a1a (deep navy), #0d1117 (medium dark)
+ *   Surface:     #161b22, #1c2333
+ *   Primary:     #00ff87 (aurora green)
+ *   Secondary:   #b388ff (aurora purple)
+ *   Accent:      #00e5ff (aurora cyan)
+ *   Text:        #e0e0e0, #a0a0b0 (dimmed)
+ *   Border:      #2a2a3a
+ *   Error:       #ff5555
+ *   Warning:     #ffb86c
+ *   Success:     #00ff87
+ */
+
+/* ===== Color Definitions ===== */
+@define-color aurora_bg_dark #0a0a1a;
+@define-color aurora_bg_medium #0d1117;
+@define-color aurora_surface #161b22;
+@define-color aurora_surface_bright #1c2333;
+@define-color aurora_green #00ff87;
+@define-color aurora_purple #b388ff;
+@define-color aurora_cyan #00e5ff;
+@define-color aurora_text #e0e0e0;
+@define-color aurora_text_dim #a0a0b0;
+@define-color aurora_border #2a2a3a;
+@define-color aurora_error #ff5555;
+@define-color aurora_warning #ffb86c;
+@define-color aurora_success #00ff87;
+
+/* Semantic colors */
+@define-color theme_bg_color @aurora_bg_medium;
+@define-color theme_fg_color @aurora_text;
+@define-color theme_base_color @aurora_surface;
+@define-color theme_text_color @aurora_text;
+@define-color theme_selected_bg_color @aurora_green;
+@define-color theme_selected_fg_color @aurora_bg_dark;
+@define-color insensitive_bg_color @aurora_surface;
+@define-color insensitive_fg_color @aurora_text_dim;
+@define-color borders @aurora_border;
+@define-color unfocused_borders alpha(@aurora_border, 0.5);
+
+/* ===== Global ===== */
+* {
+    outline-color: alpha(@aurora_cyan, 0.4);
+    -gtk-secondary-caret-color: @aurora_purple;
+}
+
+/* ===== Window ===== */
+window {
+    background-color: @aurora_bg_medium;
+    color: @aurora_text;
+}
+
+window.background {
+    background-color: @aurora_bg_medium;
+}
+
+/* ===== Header Bar ===== */
+headerbar {
+    background-color: @aurora_bg_dark;
+    color: @aurora_text;
+    border-bottom: 1px solid @aurora_border;
+    min-height: 42px;
+    padding: 0 8px;
+}
+
+headerbar:backdrop {
+    background-color: @aurora_bg_dark;
+    color: @aurora_text_dim;
+}
+
+headerbar title {
+    font-weight: bold;
+    color: @aurora_text;
+}
+
+/* Window control buttons */
+windowcontrols button {
+    min-width: 16px;
+    min-height: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    margin: 0 2px;
+}
+
+/* ===== Buttons ===== */
+button {
+    background-color: @aurora_surface_bright;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 6px 16px;
+    min-height: 24px;
+    transition: all 200ms ease;
+}
+
+button:hover {
+    background-color: alpha(@aurora_green, 0.15);
+    border-color: alpha(@aurora_green, 0.5);
+}
+
+button:active {
+    background-color: alpha(@aurora_green, 0.25);
+}
+
+button:checked {
+    background-color: alpha(@aurora_green, 0.2);
+    color: @aurora_green;
+    border-color: @aurora_green;
+}
+
+button:disabled {
+    background-color: @aurora_surface;
+    color: @aurora_text_dim;
+    border-color: alpha(@aurora_border, 0.5);
+}
+
+button.suggested-action {
+    background-color: @aurora_green;
+    color: @aurora_bg_dark;
+    border-color: @aurora_green;
+    font-weight: bold;
+}
+
+button.suggested-action:hover {
+    background-color: shade(@aurora_green, 1.1);
+}
+
+button.destructive-action {
+    background-color: @aurora_error;
+    color: white;
+    border-color: @aurora_error;
+}
+
+button.destructive-action:hover {
+    background-color: shade(@aurora_error, 1.1);
+}
+
+button.flat {
+    background: none;
+    border: none;
+}
+
+button.flat:hover {
+    background-color: alpha(@aurora_text, 0.08);
+}
+
+/* ===== Text Entry ===== */
+entry {
+    background-color: @aurora_surface;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 6px 12px;
+    min-height: 24px;
+    caret-color: @aurora_green;
+    transition: border-color 200ms ease;
+}
+
+entry:focus {
+    border-color: @aurora_green;
+    box-shadow: 0 0 0 1px alpha(@aurora_green, 0.3);
+}
+
+entry placeholder {
+    color: @aurora_text_dim;
+}
+
+/* ===== Labels ===== */
+label {
+    color: @aurora_text;
+}
+
+label.dim-label {
+    color: @aurora_text_dim;
+}
+
+/* ===== Scrollbar ===== */
+scrollbar {
+    background: transparent;
+}
+
+scrollbar slider {
+    background-color: alpha(@aurora_text, 0.3);
+    border-radius: 999px;
+    min-width: 6px;
+    min-height: 6px;
+    transition: all 200ms ease;
+}
+
+scrollbar slider:hover {
+    background-color: alpha(@aurora_green, 0.5);
+    min-width: 8px;
+}
+
+scrollbar slider:active {
+    background-color: @aurora_green;
+}
+
+/* ===== Lists & Rows ===== */
+list, listview {
+    background-color: transparent;
+}
+
+row {
+    border-radius: 8px;
+    padding: 4px 8px;
+    transition: background-color 150ms ease;
+}
+
+row:hover {
+    background-color: alpha(@aurora_text, 0.05);
+}
+
+row:selected {
+    background-color: alpha(@aurora_green, 0.15);
+}
+
+row:selected label {
+    color: @aurora_text;
+}
+
+/* ===== Switch ===== */
+switch {
+    background-color: @aurora_surface_bright;
+    border: 1px solid @aurora_border;
+    border-radius: 999px;
+    min-width: 44px;
+    min-height: 24px;
+    transition: all 250ms ease;
+}
+
+switch:checked {
+    background-color: @aurora_green;
+    border-color: @aurora_green;
+}
+
+switch slider {
+    background-color: @aurora_text;
+    border-radius: 50%;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 1px;
+    transition: all 250ms ease;
+}
+
+/* ===== Progress Bar ===== */
+progressbar trough {
+    background-color: @aurora_surface;
+    border-radius: 999px;
+    min-height: 6px;
+}
+
+progressbar progress {
+    background: linear-gradient(to right, @aurora_green, @aurora_cyan);
+    border-radius: 999px;
+    min-height: 6px;
+}
+
+/* ===== Scale (Slider) ===== */
+scale trough {
+    background-color: @aurora_surface_bright;
+    border-radius: 999px;
+    min-height: 6px;
+}
+
+scale highlight {
+    background: linear-gradient(to right, @aurora_green, @aurora_cyan);
+    border-radius: 999px;
+}
+
+scale slider {
+    background-color: @aurora_text;
+    border-radius: 50%;
+    min-width: 18px;
+    min-height: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    transition: all 150ms ease;
+}
+
+scale slider:hover {
+    background-color: @aurora_green;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+/* ===== Check & Radio Buttons ===== */
+checkbutton indicator, radiobutton indicator {
+    background-color: @aurora_surface;
+    border: 2px solid @aurora_border;
+    min-width: 18px;
+    min-height: 18px;
+    transition: all 200ms ease;
+}
+
+checkbutton indicator {
+    border-radius: 4px;
+}
+
+radiobutton indicator {
+    border-radius: 50%;
+}
+
+checkbutton:checked indicator, radiobutton:checked indicator {
+    background-color: @aurora_green;
+    border-color: @aurora_green;
+    color: @aurora_bg_dark;
+}
+
+/* ===== Menus & Popovers ===== */
+popover, popover.background {
+    background-color: @aurora_surface;
+    border: 1px solid @aurora_border;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+popover modelbutton {
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 150ms ease;
+}
+
+popover modelbutton:hover {
+    background-color: alpha(@aurora_green, 0.15);
+}
+
+menubar {
+    background-color: @aurora_bg_dark;
+    padding: 0 4px;
+}
+
+/* ===== Notebook (Tabs) ===== */
+notebook > header {
+    background-color: @aurora_bg_dark;
+    border-bottom: 1px solid @aurora_border;
+}
+
+notebook > header tab {
+    padding: 6px 16px;
+    border-radius: 8px 8px 0 0;
+    color: @aurora_text_dim;
+    transition: all 200ms ease;
+}
+
+notebook > header tab:checked {
+    background-color: @aurora_bg_medium;
+    color: @aurora_green;
+    border-bottom: 2px solid @aurora_green;
+}
+
+notebook > header tab:hover:not(:checked) {
+    color: @aurora_text;
+    background-color: alpha(@aurora_text, 0.05);
+}
+
+/* ===== Tooltip ===== */
+tooltip {
+    background-color: @aurora_surface;
+    color: @aurora_text;
+    border: 1px solid @aurora_border;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    background-color: @aurora_bg_dark;
+    border-right: 1px solid @aurora_border;
+}
+
+.sidebar row:selected {
+    background-color: alpha(@aurora_green, 0.15);
+}
+
+/* ===== Info Bars ===== */
+infobar {
+    border-radius: 0;
+}
+
+infobar.info {
+    background-color: alpha(@aurora_cyan, 0.15);
+    color: @aurora_cyan;
+}
+
+infobar.warning {
+    background-color: alpha(@aurora_warning, 0.15);
+    color: @aurora_warning;
+}
+
+infobar.error {
+    background-color: alpha(@aurora_error, 0.15);
+    color: @aurora_error;
+}
+
+/* ===== Selection ===== */
+selection {
+    background-color: alpha(@aurora_green, 0.3);
+    color: @aurora_text;
+}
+
+/* ===== Dialog ===== */
+messagedialog {
+    background-color: @aurora_surface;
+}
+
+messagedialog .titlebar {
+    background-color: @aurora_bg_dark;
+}

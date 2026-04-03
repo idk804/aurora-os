@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Aurora
+Comment=Dark theme with aurora borealis accent colors for Aurora OS
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Aurora
+MetacityTheme=Aurora
+IconTheme=Aurora
+CursorTheme=Aurora
+ButtonLayout=close,minimize,maximize:menu
