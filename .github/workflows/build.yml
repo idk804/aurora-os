@@ -31,23 +31,13 @@ jobs:
               cd /build/build-system
               chmod +x build.sh
               ./build.sh
+              ls -la out/
             "
 
-      - name: List output files
-        run: ls -la build-system/out/ || echo "No output directory yet"
-
-      - name: Upload ISO artifact
-        if: success()
-        uses: actions/upload-artifact@v4
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: aurora-os-iso
-          path: build-system/out/*.iso
-
-      - name: Create Release
-        if: github.event_name == 'push' && success()
-        run: |
-          if ls build-system/out/*.iso 1>/dev/null 2>&1; then
-            gh release create v0.1.0 build-system/out/*.iso --draft
-          fi
+          files: build-system/out/*.iso
+          draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
