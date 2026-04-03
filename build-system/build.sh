@@ -83,12 +83,21 @@ ln -sf /usr/lib/systemd/system/bluetooth.service \
 # Build ISO
 echo "[*] Building ISO (this will take a while)..."
 
-# Copy archiso mkinitcpio hooks to the chroot
-mkdir -p "$BUILD_DIR/work/x86_64/airootfs/etc/mkinitcpio.d"
-cp -r /etc/mkinitcpio.d/linux.preset "$BUILD_DIR/work/x86_64/airootfs/etc/mkinitcpio.d/"
-mkdir -p "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio"
-cp -r /usr/lib/initcpio/hooks/* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/hooks/" 2>/dev/null || true
-cp -r /usr/lib/initcpio/install/* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/install/" 2>/dev/null || true
+# Copy archiso mkinitcpio hooks to the chroot (if they exist)
+if [ -d "/usr/lib/initcpio" ]; then
+    mkdir -p "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio"
+    cp -r /usr/lib/initcpio/hooks/archiso "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/hooks/" 2>/dev/null || true
+    cp -r /usr/lib/initcpio/install/archiso "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/install/" 2>/dev/null || true
+    cp -r /usr/lib/initcpio/hooks/archiso_loop_mnt "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/hooks/" 2>/dev/null || true
+    cp -r /usr/lib/initcpio/install/archiso_loop_mnt "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/install/" 2>/dev/null || true
+    cp -r /usr/lib/initcpio/hooks/archiso_pxe_* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/hooks/" 2>/dev/null || true
+    cp -r /usr/lib/initcpio/install/archiso_pxe_* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/install/" 2>/dev/null || true
+fi
+
+# Copy mkinitcpio config if it exists
+if [ -f "/etc/mkinitcpio.conf" ]; then
+    cp /etc/mkinitcpio.conf "$BUILD_DIR/work/x86_64/airootfs/etc/mkinitcpio.conf" 2>/dev/null || true
+fi
 
 sudo mkarchiso -v -w "$BUILD_DIR/work" -o "$OUT_DIR" "$PROFILE_DIR"
 
