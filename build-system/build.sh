@@ -82,6 +82,14 @@ ln -sf /usr/lib/systemd/system/bluetooth.service \
 
 # Build ISO
 echo "[*] Building ISO (this will take a while)..."
+
+# Copy archiso mkinitcpio hooks to the chroot
+mkdir -p "$BUILD_DIR/work/x86_64/airootfs/etc/mkinitcpio.d"
+cp -r /etc/mkinitcpio.d/linux.preset "$BUILD_DIR/work/x86_64/airootfs/etc/mkinitcpio.d/"
+mkdir -p "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio"
+cp -r /usr/lib/initcpio/hooks/* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/hooks/" 2>/dev/null || true
+cp -r /usr/lib/initcpio/install/* "$BUILD_DIR/work/x86_64/airootfs/usr/lib/initcpio/install/" 2>/dev/null || true
+
 sudo mkarchiso -v -w "$BUILD_DIR/work" -o "$OUT_DIR" "$PROFILE_DIR"
 
 echo ""
