@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +15,11 @@ jobs:
       contents: write
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        run: sudo systemctl start docker
 
       - name: Build in Arch container
         run: |
@@ -21,18 +28,26 @@ jobs:
             archlinux:latest \
             bash -c "
               pacman -Sy --noconfirm archiso git base-devel sudo
-              cd /build/build-system && ./build.sh
+              cd /build/build-system
+              chmod +x build.sh
+              ./build.sh
             "
 
-      - name: Upload ISO
+      - name: List output files
+        run: ls -la build-system/out/ || echo "No output directory yet"
+
+      - name: Upload ISO artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: aurora-os-iso
           path: build-system/out/*.iso
 
       - name: Create Release
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && success()
         run: |
-          gh release create v0.1.0 build-system/out/*.iso --draft
+          if ls build-system/out/*.iso 1>/dev/null 2>&1; then
+            gh release create v0.1.0 build-system/out/*.iso --draft
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
