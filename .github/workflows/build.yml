@@ -1,0 +1,45 @@
+name: Build Aurora OS ISO
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build in Arch Linux container
+        run: |
+          docker run --rm \
+            --privileged \
+            -v ${{ github.workspace }}:/build \
+            archlinux:latest \
+            bash -c "
+              pacman -Sy --noconfirm archiso git base-devel sudo
+              cd /build/build-system
+              chmod +x build.sh
+              ./build.sh
+            "
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aurora-os-iso
+          path: build-system/out/*.iso
+          retention-days: 7
+
+      - name: Create GitHub Release
+        if: github.event_name == 'push'
+        run: |
+          if ls build-system/out/*.iso 1> /dev/null 2>&1; then
+            gh release create v0.1.0 build-system/out/*.iso --draft --title "Aurora OS v0.1.0"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
